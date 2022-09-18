@@ -1,0 +1,51 @@
+// { Driver Code Starts
+import java.io.*;
+import java.util.*;
+
+class GFG {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t;
+        t = Integer.parseInt(br.readLine());
+        while(t-- > 0){
+            
+            int query;
+            query = Integer.parseInt(br.readLine());
+            
+            Solution obj = new Solution();
+            int res = obj.noConseBits(query);
+            
+            System.out.println(res);
+            
+        }
+    }
+}
+// } Driver Code Ends
+
+
+class Solution {
+    public static int noConseBits(int query) {
+        String s = Integer.toBinaryString(query);
+        char[] ch=s.toCharArray();   
+        System.out.println(ch);
+        int count = 0;
+        char c = '0';
+        for(int i = 0 ;i<ch.length;i++)
+        {
+            if(ch[i]==1){
+                count++;
+                if(count==3){
+                while(i+1<ch.length)
+                    ch[i+1]='1';
+                    ch[i]=c;
+            }
+            }
+            else
+            count = 0;
+        }
+        s = String.valueOf(ch); 
+        query = Integer.parseInt(s, 2); 
+        return query;
+    }
+}
+        
